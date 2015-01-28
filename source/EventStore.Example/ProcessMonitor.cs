@@ -5,9 +5,13 @@ using System.Linq;
 
 namespace NeedfulThings.EventStore.Example
 {
-    internal sealed class ProcessMonitor : AggregateRoot
+    public sealed class ProcessMonitor : AggregateRoot
     {
         private readonly List<ProcessInfo> _processes = new List<ProcessInfo>();
+
+        public ProcessMonitor()
+        {
+        }
 
         public ProcessMonitor(Guid id) : base(id)
         {
@@ -40,7 +44,7 @@ namespace NeedfulThings.EventStore.Example
             events.ToList().ForEach(@event => ApplyEvent(@event, false));
         }
 
-        internal void ApplyEvent(ProcessStarted @event)
+        public void ApplyEvent(ProcessStarted @event)
         {
             var process = new ProcessInfo
             {
@@ -54,7 +58,7 @@ namespace NeedfulThings.EventStore.Example
             _processes.Add(process);
         }
 
-        internal void ApplyEvent(ProcessExited @event)
+        public void ApplyEvent(ProcessExited @event)
         {
             _processes.RemoveAll(process => process.Id == @event.ProcessId);
         }

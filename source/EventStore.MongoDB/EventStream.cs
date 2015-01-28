@@ -22,6 +22,7 @@ namespace NeedfulThings.EventStore.MongoDB
             Id = id;
 
             _collection = database.GetCollection<BsonDocument>("Commits");
+            _collection.CreateIndex("StreamId", "SeqNo");
         }
 
         public Guid Id { get; private set; }
