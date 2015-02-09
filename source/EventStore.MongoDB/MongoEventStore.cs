@@ -7,9 +7,14 @@ namespace NeedfulThings.EventStore.MongoDB
     {
         private readonly MongoDatabase _database = new MongoClient().GetServer().GetDatabase("TryMe");
 
-        public IEventStream OpenStream(Guid streamId)
+        public IEventStream CreateStream(Guid streamId)
         {
             return new EventStream(_database, streamId);
+        }
+
+        public IEventStream OpenStream(Guid streamId)
+        {
+            return EventStream.OpenExistingStream(_database, streamId);
         }
     }
 }

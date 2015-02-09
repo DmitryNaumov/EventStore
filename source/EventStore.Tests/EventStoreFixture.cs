@@ -28,7 +28,6 @@ namespace EventStore.Tests
 
             var stream = eventStore.OpenStream(account.Id);
             Assert.AreEqual(account.Version, stream.Revision);
-            Assert.AreEqual(1, stream.SeqNo);
         }
 
         [Test]
@@ -52,7 +51,6 @@ namespace EventStore.Tests
 
             var stream = eventStore.OpenStream(account.Id);
             Assert.AreEqual(account.Version, stream.Revision);
-            Assert.AreEqual(2, stream.SeqNo);
         }
 
         [Test]

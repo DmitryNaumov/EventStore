@@ -9,8 +9,6 @@ namespace NeedfulThings.EventStore
 
         int Revision { get; }
 
-        int SeqNo { get; }
-
         IEnumerable<IEvent> GetCommittedEvents();
 
         void Persist(ICommit commit);

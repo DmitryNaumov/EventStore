@@ -50,7 +50,7 @@ namespace NeedfulThings.EventStore.Example
                 var aggregates = aggregateIds.AsParallel().Select(aggregateId => _repository.GetById(aggregateId, id => new ProcessMonitor(id))).ToList();
                 stopwatch.Stop();
 
-                Console.WriteLine(stopwatch.Elapsed);
+                Console.WriteLine(aggregates.First().Version + " - " + stopwatch.Elapsed);
 
                 Parallel.ForEach(aggregates, aggregate =>
                 {
